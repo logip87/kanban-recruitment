@@ -1,0 +1,43 @@
+{
+  "name": "rekrutacja-kanban",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript QA automation for the demo Kanban board application.",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:smoke": "playwright test --grep @smoke",
+    "report": "playwright show-report",
+    "report:allure": "allure generate allure-results --output allure-report",
+    "report:allure:open": "allure open allure-report",
+    "known-issues": "allure known-issue allure-results --output allure/known.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "install:browsers": "playwright install"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "qa",
+    "kanban"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
+    "allure": "^3.8.2",
+    "allure-playwright": "^3.9.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
+  }
+}
