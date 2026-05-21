@@ -1,7 +1,10 @@
 import { expect, test } from '../../fixtures/test';
 import { card, columns, seedKanbanStore } from '../../support/kanbanStore';
+import { annotateKnownProductIssue } from '../../support/knownProductIssues';
 
 test('@regression FR6-001 requires a title when creating a card', async ({ boardPage, page }) => {
+  await annotateKnownProductIssue('FR6-001');
+
   await test.step('Prepare clean board', async () => {
     await seedKanbanStore(page);
   });
@@ -175,6 +178,8 @@ test('@regression FR10-002 saves an optional blocked dependency link', async ({
 });
 
 test('@regression FR11-001 blocked cards are visually prominent', async ({ boardPage, page }) => {
+  await annotateKnownProductIssue('FR11-001');
+
   await test.step('Prepare board with a blocked card', async () => {
     await seedKanbanStore(page, {
       boardCards: [

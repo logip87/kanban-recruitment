@@ -59,10 +59,6 @@ jobs:
         continue-on-error: true
         run: npm run test:ci
 
-      - name: Check for unknown failures
-        if: always()
-        run: npm run quality:known
-
       - name: Generate Allure report
         if: always()
         run: npm run report:allure

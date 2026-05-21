@@ -1,5 +1,6 @@
 import { expect, test } from '../../fixtures/test';
 import { card, columns, seedKanbanStore } from '../../support/kanbanStore';
+import { annotateKnownProductIssue } from '../../support/knownProductIssues';
 
 test('@regression UX-001 compact layout shows 12-16 cards per column at 1080p', async ({
   boardPage,
@@ -39,6 +40,8 @@ test('@regression UX-002 keyboard shortcuts trigger expected controls', async ({
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('UX-002');
+
   await seedKanbanStore(page, {
     boardCards: [card({ id: 'card-1', number: 1, title: 'Shortcut target' })],
   });
@@ -72,6 +75,8 @@ test('@regression UX-004 keyboard reorder announces changes with aria-live', asy
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('UX-004');
+
   await seedKanbanStore(page, {
     boardCards: [
       card({ id: 'card-1', number: 1, title: 'Keyboard first', order: 0 }),
@@ -93,6 +98,8 @@ test('@regression UX-005 empty states show guided tips and sample template cards
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('UX-005');
+
   await seedKanbanStore(page);
 
   await boardPage.goTo();
@@ -105,6 +112,8 @@ test('@regression UX-006 column settings form is not clipped for empty columns',
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('UX-006');
+
   await seedKanbanStore(page);
 
   await boardPage.goTo();

@@ -1,5 +1,6 @@
 import { expect, test } from '../../fixtures/test';
 import { card, column, columns, defaultColumns, seedKanbanStore } from '../../support/kanbanStore';
+import { annotateKnownProductIssue } from '../../support/knownProductIssues';
 
 test('@regression FR3-001 default board shows required columns', async ({ boardPage }) => {
   await test.step('Open the board', async () => {
@@ -12,6 +13,8 @@ test('@regression FR3-001 default board shows required columns', async ({ boardP
 });
 
 test('@regression FR1-001 creates a column', async ({ boardPage, page }) => {
+  await annotateKnownProductIssue('FR1-001');
+
   await test.step('Prepare clean board', async () => {
     await seedKanbanStore(page);
   });
@@ -27,6 +30,8 @@ test('@regression FR1-001 creates a column', async ({ boardPage, page }) => {
 });
 
 test('@regression FR1-002 renames a column', async ({ boardPage, page }) => {
+  await annotateKnownProductIssue('FR1-002');
+
   await test.step('Prepare board with a card in the column', async () => {
     await seedKanbanStore(page, {
       boardCards: [card({ id: 'card-1', number: 1, title: 'Keep me', columnId: columns.todo })],
@@ -118,6 +123,8 @@ test('@regression FR1-006 hard WIP limit blocks extra card movement', async ({
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('FR1-006');
+
   await test.step('Prepare board with full hard-blocked column', async () => {
     await seedKanbanStore(page, {
       boardColumns: [
@@ -154,6 +161,8 @@ test('@regression FR2-001 column policy and description are visible on demand', 
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('FR2-001');
+
   await test.step('Prepare column with policy and description', async () => {
     await seedKanbanStore(page, {
       boardColumns: [

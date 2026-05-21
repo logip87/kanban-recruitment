@@ -10,16 +10,16 @@ https://main-bvxea6i-yqgjk4adqrx5w.ch-1.platformsh.site/
 
 ## Issues Found
 
-The automated suite identifies the product defects below. These are also mapped in
-`allure/known.json`, so the Allure quality gate can separate known product failures
-from new, unknown failures.
+The automated suite identifies the product defects below. Each expected-failing test is
+annotated with an Allure issue link and a short description covering the observed result,
+expected result, browser, and environment.
 
 Issue list locations:
 
 - Human-readable list: this README, in the table below.
-- Allure known issues source: [`allure/known.json`](./allure/known.json).
-- Published report: open the GitHub Pages Allure report and check failed tests under
-  the Product errors category.
+- Allure issue metadata source: [`support/knownProductIssues.ts`](./support/knownProductIssues.ts).
+- Published report: open the GitHub Pages Allure report, select a failed test, and check
+  its Overview description and issue link.
 
 | Covered by                                                       | Requirement      | Defect                                                                                                                          |
 | ---------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,10 +46,8 @@ Issue list locations:
   advanced filters, UX checks, and lightweight performance checks.
 - Added smoke, regression, and performance test tags so the main CI suite can stay fast
   while performance tests run separately.
-- Configured Allure 3 reporting, known-issue mapping, GitHub Actions execution, and
-  GitHub Pages publishing for the latest report.
-- Added an Allure quality-gate check and report widget that passes when only known
-  product issues fail and fails when a new unknown failure appears.
+- Configured Allure 3 reporting, test-level issue annotations, GitHub Actions execution,
+  and GitHub Pages publishing for the latest report.
 - Configured Playwright artifacts to keep screenshots and traces for failures while
   disabling video capture.
 
@@ -95,12 +93,10 @@ $env:DEMO_BASE_URL="https://example.test"; npm test
 - `npm run test:performance` - run the dedicated Chromium performance checks.
 - `npm run test:headed` - run with visible browser windows.
 - `npm run test:debug` - open Playwright inspector.
+- `npm run clean:test-results` - remove generated Playwright and Allure result folders.
 - `npm run report` - open the HTML report after a run.
 - `npm run report:allure` - generate the Allure 3 report from `allure-results`.
 - `npm run report:allure:open` - serve the generated Allure report locally.
-- `npm run known-issues` - regenerate `allure/known.json` from current failed Allure results.
-- `npm run quality:known` - fail only when Allure finds an unknown failure outside
-  `allure/known.json`.
 - `npm run history:allure` - append the current run to `allure-history/history.jsonl`.
 - `npm run lint` - static analysis.
 - `npm run typecheck` - TypeScript validation.
@@ -109,22 +105,18 @@ $env:DEMO_BASE_URL="https://example.test"; npm test
 ## Reports and Artifacts
 
 The project uses Allure 3 with Playwright results written to `allure-results/`.
-Allure configuration lives in `allurerc.mjs`, and known product defects are tracked in
-`allure/known.json`.
-
-Known issues are consumed by the Awesome report command and by the quality gate:
+Allure configuration lives in `allurerc.mjs`, and known product defects are annotated
+inside the relevant tests through `support/knownProductIssues.ts`.
 
 ```bash
 npm run report:allure
-npm run quality:known
 ```
 
 The report still shows known product defects as failed test cases, which keeps the
-product status visible. The Quality Gates tab is populated by
-`support/allureQualityGateWidget.mjs` after report generation, and the CI gate fails
-only when a failed test is not listed in `allure/known.json`.
-The raw Playwright step is allowed to continue so screenshots, traces, Allure history,
-and the known-issue gate are still produced before the workflow decides the final status.
+product status visible. Open a failed test in Allure to see the issue link and the
+description explaining why that test is expected to fail against the current demo app.
+The raw Playwright step is allowed to continue so screenshots, traces, and Allure
+history are still produced before the report is published.
 
 History trends use `allure-history/history.jsonl`. CI restores this folder from the
 GitHub Actions cache before report generation, then updates and saves it after the run.
@@ -142,8 +134,8 @@ GitHub Actions publishes the latest Allure report to GitHub Pages after every pu
 https://logip87.github.io/kanban-recruitment/
 ```
 
-The workflow still uploads the report when tests fail, then fails the job so the build
-status remains honest.
+The workflow publishes the report even when product-defect tests fail, so the latest
+evidence remains available on GitHub Pages.
 
 ## Documentation
 

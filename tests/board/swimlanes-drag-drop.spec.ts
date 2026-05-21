@@ -1,10 +1,13 @@
 import { expect, test } from '../../fixtures/test';
 import { card, columns, seedKanbanStore, swimlanes } from '../../support/kanbanStore';
+import { annotateKnownProductIssue } from '../../support/knownProductIssues';
 
 test('@regression FR4-001 toggles swimlanes on and off without losing cards', async ({
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('FR4-001');
+
   await seedKanbanStore(page, {
     boardCards: [card({ id: 'card-1', number: 1, title: 'Lane card', columnId: columns.todo })],
     swimlanesEnabled: false,

@@ -1,5 +1,6 @@
 import { expect, test } from '../../fixtures/test';
 import { card, columns, seedKanbanStore } from '../../support/kanbanStore';
+import { annotateKnownProductIssue } from '../../support/knownProductIssues';
 
 test('@regression FR12-001 searches cards by title', async ({ boardPage, page }) => {
   await seedKanbanStore(page, {
@@ -72,6 +73,8 @@ test('@regression FR13-001 filters by priority', async ({ boardPage, page }) => 
 });
 
 test('@regression FR13-002 filters by blocked state', async ({ boardPage, page }) => {
+  await annotateKnownProductIssue('FR13-002');
+
   await seedKanbanStore(page, {
     boardCards: [
       card({
@@ -126,6 +129,8 @@ test('@regression FR13-004 combines priority, blocked, and date filters', async 
   boardPage,
   page,
 }) => {
+  await annotateKnownProductIssue('FR13-004');
+
   await seedKanbanStore(page, {
     boardCards: [
       card({

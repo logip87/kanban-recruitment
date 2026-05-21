@@ -15,7 +15,6 @@ This repository contains Playwright TypeScript automated tests for the demo Kanb
 - Run Chromium only: `npm run test:chromium`
 - Generate Allure report: `npm run report:allure`
 - Open Allure report: `npm run report:allure:open`
-- Regenerate Allure known issues after a failing run: `npm run known-issues`
 - Type-check: `npm run typecheck`
 - Lint: `npm run lint`
 - Format: `npm run format`
