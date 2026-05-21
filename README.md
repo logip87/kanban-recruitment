@@ -123,6 +123,8 @@ The report still shows known product defects as failed test cases, which keeps t
 product status visible. The Quality Gates tab is populated by
 `support/allureQualityGateWidget.mjs` after report generation, and the CI gate fails
 only when a failed test is not listed in `allure/known.json`.
+The raw Playwright step is allowed to continue so screenshots, traces, Allure history,
+and the known-issue gate are still produced before the workflow decides the final status.
 
 History trends use `allure-history/history.jsonl`. CI restores this folder from the
 GitHub Actions cache before report generation, then updates and saves it after the run.

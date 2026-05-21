@@ -104,7 +104,3 @@ jobs:
         if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Fail when tests fail
-        if: steps.playwright.outcome == 'failure'
-        run: exit 1
