@@ -2,6 +2,9 @@
 
 Playwright + TypeScript test framework for the demo Kanban board application.
 
+TEST REPORT 
+https://logip87.github.io/kanban-recruitment/
+
 Target application:
 
 ```text
