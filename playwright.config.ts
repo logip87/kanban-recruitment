@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 
 dotenv.config({ quiet: true });
 
-const baseURL ='https://main-bvxea6i-yqgjk4adqrx5w.ch-1.platformsh.site/';
+const baseURL =
+  process.env.DEMO_BASE_URL ?? 'https://main-bvxea6i-yqgjk4adqrx5w.ch-1.platformsh.site/';
 
 export default defineConfig({
   testDir: './tests',
@@ -26,14 +27,14 @@ export default defineConfig({
     actionTimeout: 10_000,
     navigationTimeout: 20_000,
     screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
-    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    video: 'off',
     viewport: { width: 1440, height: 900 },
   },
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    }
+    },
   ],
 });

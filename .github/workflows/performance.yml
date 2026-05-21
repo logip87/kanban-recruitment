@@ -51,4 +51,5 @@ jobs:
             test-results/
             playwright-report/
             allure-results/
+            !**/*.webm
           if-no-files-found: ignore
