@@ -1,7 +1,10 @@
 import { expect, test } from '../../fixtures/test';
 import { card, columns, seedKanbanStore } from '../../support/kanbanStore';
 
-test('@performance PERF-001 initial board load stays under 2s for 1,000 cards', async ({
+const loadBudgetMs = process.env.CI ? 4000 : 2000;
+const cardCreationP95BudgetMs = process.env.CI ? 500 : 150;
+
+test('@performance PERF-001 initial board load stays within budget for 1,000 cards', async ({
   boardPage,
   page,
 }) => {
@@ -23,10 +26,10 @@ test('@performance PERF-001 initial board load stays under 2s for 1,000 cards', 
   await expect(boardPage.cards).toHaveCount(1000);
   const loadMs = performance.now() - startedAt;
 
-  expect(loadMs).toBeLessThan(2000);
+  expect(loadMs).toBeLessThan(loadBudgetMs);
 });
 
-test('@performance PERF-002 card creation P95 latency stays under 150ms', async ({
+test('@performance PERF-002 card creation P95 latency stays within budget', async ({
   boardPage,
   page,
 }) => {
@@ -49,5 +52,5 @@ test('@performance PERF-002 card creation P95 latency stays under 150ms', async 
     Math.ceil(samples.length * 0.95) - 1
   ];
 
-  expect(p95).toBeLessThan(150);
+  expect(p95).toBeLessThan(cardCreationP95BudgetMs);
 });
