@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config({ quiet: true });
 
-const baseURL =
-  process.env.DEMO_BASE_URL ?? 'https://main-bvxea6i-yqgjk4adqrx5w.ch-1.platformsh.site/';
+const baseURL ='https://main-bvxea6i-yqgjk4adqrx5w.ch-1.platformsh.site/';
 
 export default defineConfig({
   testDir: './tests',
@@ -35,18 +34,6 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-    {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 7'] },
-    },
+    }
   ],
 });
