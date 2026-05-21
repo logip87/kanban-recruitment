@@ -48,6 +48,8 @@ The project uses Allure 3 with Playwright results written to `allure-results/`.
 Allure configuration lives in `allurerc.mjs`, and known product defects are tracked in
 `allure/known.json` through Allure 3 known issues.
 
+CI runs the Chromium project only, with Playwright workers enabled in parallel.
+
 GitHub Actions publishes the latest Allure report to GitHub Pages after every push to
 `main`:
 
@@ -59,6 +61,12 @@ The workflow still uploads the report when tests fail, then fails the job so the
 status remains honest.
 
 ## Known Defects
+
+Issue list location:
+
+- Human-readable list: this README, in the table below.
+- Allure known issues source: [`allure/known.json`](./allure/known.json).
+- Published report: open the GitHub Pages Allure report and check the Known issues view.
 
 These defects are also listed in `allure/known.json`, so Allure can separate known product
 failures from new failures.
