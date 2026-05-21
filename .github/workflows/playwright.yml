@@ -49,7 +49,7 @@ jobs:
       - name: Run Playwright tests
         id: playwright
         continue-on-error: true
-        run: npm run test:chromium
+        run: npm run test:ci
 
       - name: Generate Allure report
         if: always()

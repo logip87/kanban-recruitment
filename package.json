@@ -6,6 +6,8 @@
   "scripts": {
     "test": "playwright test",
     "test:chromium": "playwright test --project=chromium",
+    "test:ci": "playwright test --project=chromium --grep-invert @performance",
+    "test:performance": "playwright test --project=chromium --grep @performance --workers=1",
     "test:debug": "playwright test --debug",
     "test:headed": "playwright test --headed",
     "test:smoke": "playwright test --grep @smoke",

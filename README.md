@@ -32,6 +32,8 @@ $env:DEMO_BASE_URL="https://example.test"; npm test
 
 - `npm run test:smoke` - quick application availability checks.
 - `npm run test:chromium` - run only the Chromium project.
+- `npm run test:ci` - run the main Chromium CI suite without `@performance` tests.
+- `npm run test:performance` - run the dedicated Chromium performance checks.
 - `npm run test:headed` - run with visible browser windows.
 - `npm run test:debug` - open Playwright inspector.
 - `npm run report` - open the HTML report after a run.
@@ -48,7 +50,8 @@ The project uses Allure 3 with Playwright results written to `allure-results/`.
 Allure configuration lives in `allurerc.mjs`, and known product defects are tracked in
 `allure/known.json` through Allure 3 known issues.
 
-CI runs the Chromium project only, with Playwright workers enabled in parallel.
+CI runs the main Chromium suite only, excluding `@performance` tests. Performance checks
+run in the separate `Playwright Performance` workflow on `main`, nightly, and manually.
 
 GitHub Actions publishes the latest Allure report to GitHub Pages after every push to
 `main`:
@@ -71,20 +74,21 @@ Issue list location:
 These defects are also listed in `allure/known.json`, so Allure can separate known product
 failures from new failures.
 
-| ID     | Covered by                                                       | Requirement      | Defect                                                                                                                          |
-| ------ | ---------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| KB-001 | `FR1-001 creates a column`                                       | FR1              | Creating a new column through the Add column flow does not add the requested column to the board.                               |
-| KB-002 | `FR1-002 renames a column`                                       | FR1              | Column rename is not reachable from the column settings flow; the expected column-name input never appears.                     |
-| KB-003 | `FR1-006 hard WIP limit blocks extra card movement`              | FR1              | Hard WIP limit does not block moving another card into a full hard-blocked column.                                              |
-| KB-004 | `FR2-001 column policy and description are visible on demand`    | FR2              | Column policy and description are not exposed on demand; the column info control is missing.                                    |
-| KB-005 | `FR4-001 toggles swimlanes on and off without losing cards`      | FR4              | Enabling swimlanes hides or loses existing cards instead of preserving them in a lane.                                          |
-| KB-006 | `FR6-001 requires a title when creating a card`                  | FR6              | Empty card creation is blocked, but no visible required-title validation message is shown.                                      |
-| KB-007 | `FR11-001 blocked cards are visually prominent`                  | FR11             | Blocked cards receive a blocked class, but the required blocked badge is missing.                                               |
-| KB-008 | `FR13-002 filters by blocked state`                              | FR13             | Blocked filter chip is ambiguous and partly untranslated, resolving as both `app.filters.blocked_only.label` and `Not blocked`. |
-| KB-009 | `FR13-004 combines priority, blocked, and date filters`          | FR13             | Combined advanced filtering cannot reliably apply blocked filtering because the blocked filter option is ambiguous.             |
-| KB-010 | `UX-002 keyboard shortcuts trigger expected controls`            | UX Shortcuts     | Keyboard shortcut `N` does not open the new-card control, so the documented shortcut workflow is not usable.                    |
-| KB-011 | `UX-004 keyboard reorder announces changes with aria-live`       | UX Drag-and-drop | Keyboard reorder updates order, but `aria-live` announces implementation ids instead of a meaningful card title.                |
-| KB-012 | `UX-005 empty states show guided tips and sample template cards` | UX Empty States  | Empty board state does not show the required guided tips or sample template card entry point.                                   |
+| Covered by                                                       | Requirement      | Defect                                                                                                                          |
+| ---------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `FR1-001 creates a column`                                       | FR1              | Creating a new column through the Add column flow does not add the requested column to the board.                               |
+| `FR1-002 renames a column`                                       | FR1              | Column rename is not reachable from the column settings flow; the expected column-name input never appears.                     |
+| `FR1-006 hard WIP limit blocks extra card movement`              | FR1              | Hard WIP limit does not block moving another card into a full hard-blocked column.                                              |
+| `FR2-001 column policy and description are visible on demand`    | FR2              | Column policy and description are not exposed on demand; the column info control is missing.                                    |
+| `FR4-001 toggles swimlanes on and off without losing cards`      | FR4              | Enabling swimlanes hides or loses existing cards instead of preserving them in a lane.                                          |
+| `FR6-001 requires a title when creating a card`                  | FR6              | Empty card creation is blocked, but no visible required-title validation message is shown.                                      |
+| `FR11-001 blocked cards are visually prominent`                  | FR11             | Blocked cards receive a blocked class, but the required blocked badge is missing.                                               |
+| `FR13-002 filters by blocked state`                              | FR13             | Blocked filter chip is ambiguous and partly untranslated, resolving as both `app.filters.blocked_only.label` and `Not blocked`. |
+| `FR13-004 combines priority, blocked, and date filters`          | FR13             | Combined advanced filtering cannot reliably apply blocked filtering because the blocked filter option is ambiguous.             |
+| `UX-002 keyboard shortcuts trigger expected controls`            | UX Shortcuts     | Keyboard shortcut `N` does not open the new-card control, so the documented shortcut workflow is not usable.                    |
+| `UX-004 keyboard reorder announces changes with aria-live`       | UX Drag-and-drop | Keyboard reorder updates order, but `aria-live` announces implementation ids instead of a meaningful card title.                |
+| `UX-005 empty states show guided tips and sample template cards` | UX Empty States  | Empty board state does not show the required guided tips or sample template card entry point.                                   |
+| `UX-006 column settings form is not clipped for empty columns`   | UX Layout        | Column settings form is clipped when a column has no cards, making the lower edit fields partially hidden.                      |
 
 ## Documentation
 

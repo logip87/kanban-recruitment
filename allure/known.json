@@ -3,7 +3,7 @@
     "historyId": "ef8f57bf47a7ae76c06c02c049788335.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-001",
+        "name": "Create column does not add column",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -13,7 +13,7 @@
     "historyId": "7711fca4508b2b4caec5d8b62ac1ecdb.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-002",
+        "name": "Column rename input missing",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -23,7 +23,7 @@
     "historyId": "16474555f5f41b4bce56f1d2d66d8a2c.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-003",
+        "name": "Hard WIP limit does not block move",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -33,7 +33,7 @@
     "historyId": "698d39c45914a69a33efaca170d1d6ad.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-004",
+        "name": "Column policy and description missing",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -43,7 +43,7 @@
     "historyId": "a84ec4c56fcbe4e612238d4a242e7f0d.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-005",
+        "name": "Swimlane toggle loses cards",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -53,7 +53,7 @@
     "historyId": "a388fd545cf39d6aa4ad24d1ea2ff430.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-006",
+        "name": "Required title validation message missing",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -63,7 +63,7 @@
     "historyId": "67b1fa7578d5940dcbbd01d1564dc96a.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-007",
+        "name": "Blocked badge missing",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -73,7 +73,7 @@
     "historyId": "3efa02a89b698bc9d9dbe2d1b60e0a43.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-008",
+        "name": "Blocked filter option ambiguous",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -83,7 +83,7 @@
     "historyId": "a00746b804f9df2f172bd568729f77c4.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-009",
+        "name": "Combined filter blocked option ambiguous",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -93,7 +93,7 @@
     "historyId": "1b84a948ab6d06da6492ad9f01361dd7.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-010",
+        "name": "New card shortcut not working",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -103,7 +103,7 @@
     "historyId": "7501d790936432f2a5bb9cc2c25f43bd.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-011",
+        "name": "Keyboard reorder aria-live message unclear",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
@@ -113,10 +113,20 @@
     "historyId": "ed7c5062906ae9d30d26440c8bf5c790.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
-        "name": "KB-012",
+        "name": "Empty state guidance missing",
         "url": "https://github.com/logip87/kanban-recruitment#known-defects"
       }
     ],
     "comment": "UX: Empty board state does not show the required guided tips or sample template card entry point."
+  },
+  {
+    "historyId": "2260d0c37afa9614b70f8965907b46a7.5bd835b0d6b1d4ada3b9f0db936e82c8",
+    "issues": [
+      {
+        "name": "Column settings form clipped",
+        "url": "https://github.com/logip87/kanban-recruitment#known-defects"
+      }
+    ],
+    "comment": "UX: Column settings form is clipped when a column has no cards, making lower edit fields partially hidden."
   }
 ]

@@ -306,6 +306,21 @@ export class BoardPage extends BasePage {
     await this.filterDateInputs.nth(1).fill(to);
   }
 
+  async isColumnSettingsMenuClipped(): Promise<boolean> {
+    return this.columnSettingsMenu.evaluate((menu) => {
+      const column = menu.closest('.kanban-column');
+
+      if (!column) {
+        return false;
+      }
+
+      const menuBounds = menu.getBoundingClientRect();
+      const columnBounds = column.getBoundingClientRect();
+
+      return menuBounds.bottom > columnBounds.bottom || menuBounds.right > columnBounds.right;
+    });
+  }
+
   visibleText(text: string): Locator {
     return this.app.filter({ hasText: text });
   }

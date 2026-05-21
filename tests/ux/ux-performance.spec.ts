@@ -101,6 +101,19 @@ test('@regression UX-005 empty states show guided tips and sample template cards
   await expect(boardPage.visibleText('Use a sample template')).toBeVisible();
 });
 
+test('@regression UX-006 column settings form is not clipped for empty columns', async ({
+  boardPage,
+  page,
+}) => {
+  await seedKanbanStore(page);
+
+  await boardPage.goTo();
+  await boardPage.openColumnSettings(0);
+
+  await expect(boardPage.columnSettingsMenu).toBeVisible();
+  expect(await boardPage.isColumnSettingsMenuClipped()).toBe(false);
+});
+
 test('@performance PERF-001 initial board load stays under 2s for 1,000 cards', async ({
   boardPage,
   page,

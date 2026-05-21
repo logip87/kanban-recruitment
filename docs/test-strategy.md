@@ -14,7 +14,7 @@ The test framework is prepared for automated functional, UX, accessibility, and 
 - Functional regression: board, columns, cards, search, filters, drag/drop, bulk actions.
 - Keyboard and accessibility: shortcuts, keyboard reorder, aria-live feedback, focus handling.
 - UX validation: information density, blocked/WIP visual prominence, empty states.
-- Performance checks: initial load and card operation latency on realistic data volumes.
+- Performance checks: initial load and card operation latency on realistic data volumes, isolated from the main CI suite.
 
 ## Requirement Coverage Matrix
 
@@ -111,6 +111,6 @@ Planned coverage includes every listed functional requirement (`FR1-FR13`) plus 
 
 - `@smoke` - fast checks for deployment availability.
 - `@regression` - functional and UX regression checks.
-- `@performance` - timing and scalability checks.
+- `@performance` - timing and scalability checks, run through the dedicated performance workflow/script rather than the main CI suite.
 
 Avoid stacking tags on every test. The test title and folder already provide enough context.
