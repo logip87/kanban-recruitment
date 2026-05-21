@@ -48,8 +48,8 @@ Issue list locations:
   while performance tests run separately.
 - Configured Allure 3 reporting, known-issue mapping, GitHub Actions execution, and
   GitHub Pages publishing for the latest report.
-- Added an Allure quality-gate check that passes when only known product issues fail
-  and fails when a new unknown failure appears.
+- Added an Allure quality-gate check and report widget that passes when only known
+  product issues fail and fails when a new unknown failure appears.
 - Configured Playwright artifacts to keep screenshots and traces for failures while
   disabling video capture.
 
@@ -101,6 +101,7 @@ $env:DEMO_BASE_URL="https://example.test"; npm test
 - `npm run known-issues` - regenerate `allure/known.json` from current failed Allure results.
 - `npm run quality:known` - fail only when Allure finds an unknown failure outside
   `allure/known.json`.
+- `npm run history:allure` - append the current run to `allure-history/history.jsonl`.
 - `npm run lint` - static analysis.
 - `npm run typecheck` - TypeScript validation.
 - `npm run format` - format repository files.
@@ -119,8 +120,12 @@ npm run quality:known
 ```
 
 The report still shows known product defects as failed test cases, which keeps the
-product status visible. The quality gate is the part that distinguishes already known
-failures from new unknown failures.
+product status visible. The Quality Gates tab is populated by
+`support/allureQualityGateWidget.mjs` after report generation, and the CI gate fails
+only when a failed test is not listed in `allure/known.json`.
+
+History trends use `allure-history/history.jsonl`. CI restores this folder from the
+GitHub Actions cache before report generation, then updates and saves it after the run.
 
 Playwright is configured to retain traces and screenshots for failures. Video capture is
 disabled, and CI artifact uploads exclude `.webm` files.

@@ -20,7 +20,7 @@
     "comment": "FR1: Column rename is not reachable from the column settings flow; the expected column-name input never appears."
   },
   {
-    "historyId": "16474555f5f41b4bce56f1d2d66d8a2c.5bd835b0d6b1d4ada3b9f0db936e82c8",
+    "historyId": "b873ec6f4404fa147daaa8ba25837de0.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
         "name": "Hard WIP limit does not block move",
@@ -60,7 +60,7 @@
     "comment": "FR6: Empty card creation is blocked, but no visible required-title validation message is shown."
   },
   {
-    "historyId": "67b1fa7578d5940dcbbd01d1564dc96a.5bd835b0d6b1d4ada3b9f0db936e82c8",
+    "historyId": "162b335ff774307978c85f64f4e7a9ac.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
         "name": "Blocked badge missing",
@@ -90,7 +90,7 @@
     "comment": "FR13: Combined advanced filtering cannot reliably apply blocked filtering because the blocked filter option is ambiguous."
   },
   {
-    "historyId": "1b84a948ab6d06da6492ad9f01361dd7.5bd835b0d6b1d4ada3b9f0db936e82c8",
+    "historyId": "297c8e7b859696dfa2ae15d311bff058.5bd835b0d6b1d4ada3b9f0db936e82c8",
     "issues": [
       {
         "name": "New card shortcut not working",

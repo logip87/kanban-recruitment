@@ -40,6 +40,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Restore Allure history
+        uses: actions/cache/restore@v4
+        with:
+          path: allure-history
+          key: allure-history-${{ github.run_id }}
+          restore-keys: |
+            allure-history-
+
       - name: Type-check
         run: npm run typecheck
 
@@ -51,13 +59,24 @@ jobs:
         continue-on-error: true
         run: npm run test:ci
 
-      - name: Generate Allure report
-        if: always()
-        run: npx allure awesome allure-results --output allure-report --known-issues allure/known.json
-
       - name: Check for unknown failures
         if: always()
-        run: npx allure quality-gate --known-issues allure/known.json --max-failures 0 allure-results
+        run: npm run quality:known
+
+      - name: Generate Allure report
+        if: always()
+        run: npm run report:allure
+
+      - name: Update Allure history
+        if: always()
+        run: npm run history:allure
+
+      - name: Save Allure history
+        if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/cache/save@v4
+        with:
+          path: allure-history
+          key: allure-history-${{ github.run_id }}
 
       - name: Upload Playwright artifacts
         if: always()
